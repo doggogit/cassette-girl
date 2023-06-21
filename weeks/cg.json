@@ -1,0 +1,50 @@
+{
+	"storyName": "Play, Pause, Stop, Repeat.",
+	"difficulties": "Hard",
+	"hideFreeplay": false,
+	"weekBackground": "cg",
+	"freeplayColor": [
+		67,
+		67,
+		175
+	],
+	"weekBefore": "",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"cg",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"Ukiyo",
+			"cg",
+			[
+				67,
+				67,
+				175
+			]
+		],
+		[
+			"Earworm",
+			"cg",
+			[
+				67,
+				67,
+				175
+			]
+		],
+		[
+			"Machina",
+			"cg",
+			[
+				67,
+				67,
+				175
+			]
+		]
+	],
+	"hideStoryMode": false,
+	"weekName": "Cassette Girl Week",
+	"hiddenUntilUnlocked": false
+}

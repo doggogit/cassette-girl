@@ -1,0 +1,11 @@
+{
+	"idle_anim": "cassettegirl idle",
+	"image": "Menu_CG",
+	"position": [
+		222,
+		201
+	],
+	"flipX": false,
+	"scale": 0.55,
+	"confirm_anim": "cassettegirl idle"
+}

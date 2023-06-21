@@ -1,0 +1,41 @@
+{
+	"storyName": "Play, Pause, Stop, Repeat.",
+	"difficulties": "Hard",
+	"hideFreeplay": false,
+	"weekBackground": "cg",
+	"freeplayColor": [
+		67,
+		67,
+		175
+	],
+	"weekBefore": "",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"cg",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"Soda Groove",
+			"cg",
+			[
+				67,
+				67,
+				175
+			]
+		],
+		[
+			"City Funk",
+			"cg",
+			[
+				67,
+				67,
+				175
+			]
+		]
+	],
+	"hideStoryMode": true,
+	"weekName": "Cassette Girl Week",
+	"hiddenUntilUnlocked": false
+}

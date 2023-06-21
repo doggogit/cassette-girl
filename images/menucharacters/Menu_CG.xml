@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Free texture packer v0.6.7 http://free-tex-packer.com -->
+<TextureAtlas imagePath="Menu_CG.png" width="1253" height="2024">
+  <SubTexture name="cassettegirl idle0000" x="2" y="2" width="417" height="662" frameX="-111" frameY="-68" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0008" x="423" y="2" width="409" height="675" frameX="-111" frameY="-55" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0009" x="2" y="668" width="409" height="675" frameX="-111" frameY="-55" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0002" x="415" y="681" width="416" height="660" frameX="-111" frameY="-70" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0003" x="835" y="681" width="416" height="660" frameX="-111" frameY="-70" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0004" x="836" y="2" width="415" height="659" frameX="-111" frameY="-71" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0006" x="415" y="1345" width="411" height="671" frameX="-111" frameY="-59" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0010" x="2" y="1347" width="409" height="675" frameX="-111" frameY="-55" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0012" x="830" y="1345" width="409" height="675" frameX="-111" frameY="-55" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0001" x="2" y="2" width="417" height="662" frameX="-111" frameY="-68" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0005" x="836" y="2" width="415" height="659" frameX="-111" frameY="-71" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0007" x="415" y="1345" width="411" height="671" frameX="-111" frameY="-59" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0011" x="2" y="1347" width="409" height="675" frameX="-111" frameY="-55" frameWidth="586" frameHeight="753" />
+  <SubTexture name="cassettegirl idle0013" x="830" y="1345" width="409" height="675" frameX="-111" frameY="-55" frameWidth="586" frameHeight="753" />
+</TextureAtlas>

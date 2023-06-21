@@ -1,7 +1,11 @@
 {
-	"name": "Name",
-	"description": "Description",
-	"restart":false,
+	"name": "Vs. Cassette Girl",
+	"description": "a very cool mod",
+	"restart": true,
 	"runsGlobally": false,
-	"color": [170, 0, 255]
+	"color": [
+		67,
+		67,
+		175
+	]
 }
