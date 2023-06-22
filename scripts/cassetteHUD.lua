@@ -5,13 +5,14 @@ function onCreate()
     setPropertyFromClass("openfl.Lib", "application.window.title", "Friday Night Funkin': Vs Cassette Girl")
 end
 
-function onCreatePost() -- thing that appears every note hit (unfinished | im tired)
+function onCreatePost()
     makeLuaSprite('hbOverlay', 'cassette/hud/hbOverlay', 0, 0)
     setObjectCamera('hbOverlay', 'hud')
     setObjectOrder('hbOverlay', getObjectOrder('healthBar') + 1)
     setProperty('hbOverlay.alpha', 0.7)
     addLuaSprite('hbOverlay')
 
+    -- thing that appears every note hit (unfinished | im tired)
     for i = 1, 4 do
         makeLuaSprite('hitOverlay'..lights[i], 'cassette/hud/'..lights[i]..' LIGHT')
         screenCenter('hitOverlay'..lights[i])
