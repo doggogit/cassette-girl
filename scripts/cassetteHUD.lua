@@ -1,21 +1,47 @@
 local lights = {'LEFT', 'DOWN', 'UP', 'RIGHT'}
+switchedCol = false
 
 function onCreate()
     setPropertyFromClass("openfl.Lib", "application.window.title", "Friday Night Funkin': Vs Cassette Girl")
 end
 
 function onCreatePost() -- thing that appears every note hit (unfinished | im tired)
+    makeLuaSprite('hbOverlay', 'cassette/hud/hbOverlay', 0, 0)
+    setObjectCamera('hbOverlay', 'hud')
+    setObjectOrder('hbOverlay', getObjectOrder('healthBar') + 1)
+    setProperty('hbOverlay.alpha', 0.7)
+    addLuaSprite('hbOverlay')
+
     for i = 1, 4 do
-        makeLuaSprite('hitOverlay'..lights[i], 'cassette/stage/'..lights[i]..' LIGHT')
+        makeLuaSprite('hitOverlay'..lights[i], 'cassette/hud/'..lights[i]..' LIGHT')
         screenCenter('hitOverlay'..lights[i])
         scaleObject('hitOverlay'..lights[i], 0.81, 0.81, false)
         setProperty('hitOverlay'..lights[i]..'.alpha', 0.0001)
-        setObjectCamera('hitOverlay'..lights[i], 'hud') -- these overlays are actually on their own camera, i'll probably do that later
+        setObjectCamera('hitOverlay'..lights[i], 'hud')
         addLuaSprite('hitOverlay'..lights[i])
     end
 end
 
+function onUpdatePost()
+    setProperty('hbOverlay.x', getProperty('healthBarBG.x'))
+    setProperty('hbOverlay.y', getProperty('healthBarBG.y'))
+end
+
 function goodNoteHit(i, d, t, s)
+    if not sus then
+        runHaxeCode([=[
+            var nums = [for (i in 1...4) game.members[game.members.indexOf(game.strumLineNotes) - i]];
+            var all = [for (i in nums) i];
+            var combo = game.members[game.members.indexOf(game.strumLineNotes) - 3];
+            all.push(combo);
+            var rating = game.members[game.members.indexOf(game.strumLineNotes) - 4];
+            all.push(rating);
+            // example on what you can do :)
+            for (spr in all)
+                spr.cameras = [game.camGame];
+        ]=])
+    end
+
     if not s then
         for i = 0, 3 do
             setProperty('hitOverlay'..lights[i+1]..'.alpha', i == d and 1 or 0)
@@ -50,6 +76,11 @@ function onTimerCompleted(t)
             doTweenAlpha('bleh'..t, 'hitOverlay'..t, 0, 4, 'cubeOut')
         end
     end
+end
+
+function onBeatHit()
+    setTimeBarColors((switchedCol and '4343af' or '31b0d1'), '000000');
+    switchedCol = not switchedCol
 end
 
 function onDestroy()
