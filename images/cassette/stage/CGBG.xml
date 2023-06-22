@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Free texture packer v0.6.7 http://free-tex-packer.com -->
+<TextureAtlas imagePath="CGBG.png" width="6573" height="3795">
+  <SubTexture name="new0000" x="1" y="1"  width="2189" height="1263" frameX="-208" frameY="-344" frameWidth="2741" frameHeight="1896"/>
+  <SubTexture name="new0001" x="2192" y="1"  width="2189" height="1263" frameX="-208" frameY="-344" frameWidth="2741" frameHeight="1896"/>
+  <SubTexture name="new0002" x="4383" y="1"  width="2189" height="1263" frameX="-208" frameY="-344" frameWidth="2741" frameHeight="1896"/>
+  <SubTexture name="new0003" x="1" y="1266"  width="2189" height="1263" frameX="-208" frameY="-344" frameWidth="2741" frameHeight="1896"/>
+  <SubTexture name="new0004" x="2192" y="1266"  width="2189" height="1263" frameX="-208" frameY="-344" frameWidth="2741" frameHeight="1896"/>
+  <SubTexture name="new0005" x="4383" y="1266"  width="2189" height="1263" frameX="-208" frameY="-344" frameWidth="2741" frameHeight="1896"/>
+  <SubTexture name="new0006" x="1" y="2531"  width="2189" height="1263" frameX="-208" frameY="-344" frameWidth="2741" frameHeight="1896"/>
+  <SubTexture name="new0007" x="2192" y="2531"  width="2189" height="1263" frameX="-208" frameY="-344" frameWidth="2741" frameHeight="1896"/>
+</TextureAtlas>

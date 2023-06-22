@@ -1,147 +1,62 @@
-local endedSong = false
-local canEnd = false
-local leFakeBpm = 0
-local leLastBeat = 0
-local leFakeBeat = 0
+function onCreate()
+    makeLuaSprite('cgbg', nil, 0, 0)
+    screenCenter('cgbg')
+    scaleObject('cgbg', 1.25, 1.25, false)
+    loadFrames('cgbg', 'cassette/stage/CGBG', 'sparrow')
+    addAnimationByPrefix('cgbg', 'idle', 'new', 24, false)
+    setProperty('cgbg.x', getProperty('cgbg.x') - 1250)
+    setProperty('cgbg.y', getProperty('cgbg.y') - 980)
+    addLuaSprite('cgbg')
 
-function onCreatePost()
-	runHaxeCode([[
-        game.gf.x -= 100;
-        game.gf.y += 20;
-        game.dad.x -= 110;
-        game.dad.y += 180;
-        game.boyfriend.y += 140;
-    ]])
+    if songName == 'Soda Groove' then
+        makeLuaSprite('coolboppersSG1', nil, 0, 0)
+        scaleObject('coolboppersSG1', 1.45, 1.45, false)
+        screenCenter('coolboppersSG1')
+        loadFrames('coolboppersSG1', 'cassette/stage/crowd/alt/crowd-free', 'sparrow')
+        addAnimationByPrefix('coolboppersSG1', 'idle', 'crowd-van', 24, false)
+        setProperty('coolboppersSG1.x', getProperty('coolboppersSG1.x') - 660)
+        setProperty('coolboppersSG1.y', getProperty('coolboppersSG1.y') - 40)
+        addLuaSprite('coolboppersSG1')
 
-    if isStoryMode and songPath == 'earworm' then 
-        makeAnimatedLuaSprite('casFake', 'characters/cassettegirl-chill', getProperty('dad.x') - 1, getProperty('dad.y')) -- for the end song cutscene
-        addAnimationByPrefix('casFake', 'swap', 'cassettegirl-chill', 24, false)
-        setObjectOrder('casFake', getObjectOrder('dadGroup') + 1)
-        setProperty('casFake.alpha', 0.0001)    
-
-        -- "caching" attempts | ill figure it out probably --
-        addHaxeLibrary('SoundFrontEnd', 'flixel.system.frontEnds')
-        --[[addCharacterToList('bf', 'boyfriend')
-        addCharacterToList('gf', 'gf')
-        addCharacterToList('cg', 'dad')]]
-
-        runHaxeCode([[
-            FlxG.sound.cache(Paths.inst('machina'));
-  		    FlxG.sound.cache(Paths.voices('machina'));
-        ]])
-    end
-end
-
-function onStartCountdown()
-    if isStoryMode and songPath == 'machina' then
-        setProperty('skipCountdown', true)
-    end
-end
-
-local hideStuff = {'iconP1', 'iconP2', 'healthBar', 'healthBarBG', 'scoreTxt'}
-function onEndSong()
-    if --[[isStoryMode and]] songPath == 'earworm' and not canEnd then
-        endedSong = true
-        leFakeBpm = curBpm
-        setProperty('updateTime', false)
-
-        setProperty('timeBar.visible', true)
-        setProperty('timeBarBG.visible', true)
-        setProperty('timeTxt.visible', true)
-        
-        playMusic('breakfast', 0, true) -- 
-
-        for i = 1, #hideStuff do
-            doTweenAlpha('hide'..i, hideStuff[i], 0, stepCrochet * 16 / 1000, 'quadInOut') 
-        end
-        for i = 0, 7 do
-            noteTweenAlpha('awayWithYou'..i, i, 0, 1, 'quadInOut') 
-        end
-
-        runTimer('setBack', 0.8)
-
-        return Function_Stop
-    end
-    return Function_Continue
-end
-
-function onTimerCompleted(t)
-    if t == 'setBack' then
-        setProperty('dad.visible', false)
-        playAnim('casFake', 'swap')
-        setProperty('casFake.alpha', 1)
-        playSound('rewind')
-
-        runHaxeCode([[
-            curPos = 0;
-            
-            FlxTween.num(0, 122000, 1.65, {
-                ease: FlxEase.linear, 
-                onUpdate: function(tween:FlxTween){
-                    curPos = tween.value;
-                    game.setOnLuas('curPos', curPos);
-                }
-            });  
-        ]])
-    end
-    if t == 'endThatSong!!!!' then
-        canEnd = true
-        endSong()
-    end
-end
-
-local usePos = 0
-local nextSongLength = 121000 
-function onUpdatePost()
-    if endedSong then
-        usePos = curPos or 0
-
-        if getProperty('casFake.animation.curAnim.finished') and not getProperty('dad.visible') then
-            runTimer('endThatSong!!!!', 0.3)
-            setProperty('casFake.visible', false)
-            setProperty('dad.visible', true)
-        end
-
-        setTextString('timeTxt', format(usePos))
-        setProperty('timeBar.percent', math.abs(((usePos / nextSongLength) * 100) - 100))
-
-        fakePos = getPropertyFromClass('flixel.FlxG', 'sound.music.time')
-	    leFakeBeat = (math.ceil((fakePos/5000) * (leFakeBpm/12)) - 1)  -- fake beat hits??? fuck!!!!
-	    if leFakeBeat ~= leLastBeat then
-	    	leLastBeat = leFakeBeat
-	    	fakeBeatHit() 
-	    end
-    end
-end
-
-function onMoveCamera(char)
-    if char == 'dad' then 
-        runHaxeCode([[
-            game.camFollow.set(game.dad.getMidpoint().x + 150, game.dad.getMidpoint().y - 100);
-            game.camFollow.x += game.dad.cameraPosition[0];
-            game.camFollow.y += game.dad.cameraPosition[1];
-            game.camFollow.x = game.dad.getMidpoint().x + 200;
-        ]])
+        makeLuaSprite('coolboppersSG2', nil, 0, 0)
+        screenCenter('coolboppersSG2')
+        scaleObject('coolboppersSG2', 1.45, 1.45, false)
+        loadFrames('coolboppersSG2', 'cassette/stage/crowd/alt/crowd-free2', 'sparrow')
+        addAnimationByPrefix('coolboppersSG2', 'idle', 'crowd-van', 24, false)
+        setProperty('coolboppersSG2.x', getProperty('coolboppersSG2.x') - 640)
+        setProperty('coolboppersSG2.y', getProperty('coolboppersSG2.y') - 30)
+        setObjectOrder('coolboppersSG2', getObjectOrder('gfGroup') + 1)
+        addLuaSprite('coolboppersSG2')
     else
-        runHaxeCode([[
-            game.camFollow.set(game.boyfriend.getMidpoint().x - 100, game.boyfriend.getMidpoint().y - 100);
-            game.camFollow.y = game.boyfriend.getMidpoint().y - 230;
+        makeLuaSprite('coolboppers1', nil, 0, 0)
+        scaleObject('coolboppers1', 1.3, 1.3)
+        screenCenter('coolboppers1')
+        loadFrames('coolboppers1', 'cassette/stage/crowd/boppers1', 'sparrow')
+        addAnimationByPrefix('coolboppers1', 'idle', 'crowd', 24, false)
+        setProperty('coolboppers1.x', getProperty('coolboppers1.x') - 650)
+        setProperty('coolboppers1.y', getProperty('coolboppers1.y') - 80)
+        setObjectOrder('coolboppers1', getObjectOrder('gfGroup') + 1)
+        addLuaSprite('coolboppers1')
 
-            game.camFollow.x -= game.boyfriend.cameraPosition[0];
-            game.camFollow.y += game.boyfriend.cameraPosition[1];
-        ]])
+        makeLuaSprite('coolboppers2', nil, 0, 0)
+        screenCenter('coolboppers2')
+        scaleObject('coolboppers2', 1.3, 1.3)
+        loadFrames('coolboppers2', 'cassette/stage/crowd/boppers2', 'sparrow')
+        addAnimationByPrefix('coolboppers2', 'idle', 'crowd', 24, false)
+        setProperty('coolboppers2.x', getProperty('coolboppers2.x') - 700)
+        setProperty('coolboppers2.y', getProperty('coolboppers2.y') - 110)
+        addLuaSprite('coolboppers2')
     end
 end
 
-function format(time)
-    local s = math.floor(time/1000);
-    return string.format('%01d:%02d', (s/60)%60, s%60);
-end
+function onBeatHit()
+    playAnim('cgbg', 'idle')
 
-function fakeBeatHit()
-    characterDance('gf')
-    if leFakeBeat % 2 == 0 then
-        characterDance('boyfriend')
-        characterDance('dad')
+    if songName == 'Soda Groove' then
+        playAnim('coolboppersSG1', 'idle')
+        playAnim('coolboppersSG2', 'idle')
+    else
+        playAnim('coolboppers1', 'idle')
+        playAnim('coolboppers2', 'idle')
     end
 end

@@ -8,56 +8,111 @@
 			],
 			"anim": "idle",
 			"fps": 24,
-			"name": "cassettegirl idle",
+			"name": "cassettegirl idle0",
 			"indices": []
 		},
 		{
-			"loop": true,
+			"loop": false,
 			"offsets": [
-				-2,
+				0,
+				0
+			],
+			"anim": "idle-alt",
+			"fps": 24,
+			"name": "cassettegirl idle alt",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
 				0
 			],
 			"anim": "singLEFT",
 			"fps": 24,
-			"name": "cassettegirl left",
+			"name": "cassettegirl left0",
 			"indices": []
 		},
 		{
-			"loop": true,
+			"loop": false,
 			"offsets": [
-				-2,
+				0,
 				0
 			],
-			"anim": "singRIGHT",
+			"anim": "singLEFT-alt",
 			"fps": 24,
-			"name": "cassettegirl right",
+			"name": "cassettegirl left alt",
 			"indices": []
 		},
 		{
-			"loop": true,
+			"loop": false,
 			"offsets": [
-				2,
-				-1
+				0,
+				0
 			],
 			"anim": "singDOWN",
 			"fps": 24,
-			"name": "cassettegirl down",
+			"name": "cassettegirl down0",
 			"indices": []
 		},
 		{
-			"loop": true,
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singDOWN-alt",
+			"fps": 24,
+			"name": "cassettegirl down alt",
+			"indices": []
+		},
+		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
 			"anim": "singUP",
 			"fps": 24,
-			"name": "cassettegirl up",
+			"name": "cassettegirl up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singUP-alt",
+			"fps": 24,
+			"name": "cassettegirl up alt",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "cassettegirl right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singRIGHT-alt",
+			"fps": 24,
+			"name": "cassettegirl right alt",
 			"indices": []
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/cassettegirl",
+	"image": "characters/cassetteGirl",
 	"position": [
 		0,
 		0
@@ -65,9 +120,9 @@
 	"healthicon": "cg",
 	"flip_x": false,
 	"healthbar_colors": [
-		216,
-		85,
-		142
+		67,
+		67,
+		175
 	],
 	"camera_position": [
 		0,

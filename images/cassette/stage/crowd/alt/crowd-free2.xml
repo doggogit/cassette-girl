@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Free texture packer v0.6.7 http://free-tex-packer.com -->
+<TextureAtlas imagePath="crowd-free2.png" width="1179" height="528">
+  <SubTexture name="crowd-van0004" x="2" y="2" width="388" height="524" frameX="-817" frameY="-0" frameWidth="1207" frameHeight="533" />
+  <SubTexture name="crowd-van0002" x="394" y="2" width="388" height="523" frameX="-816" frameY="-1" frameWidth="1207" frameHeight="533" />
+  <SubTexture name="crowd-van0000" x="786" y="2" width="391" height="518" frameX="-815" frameY="-6" frameWidth="1207" frameHeight="533" />
+  <SubTexture name="crowd-van0001" x="786" y="2" width="391" height="518" frameX="-815" frameY="-6" frameWidth="1207" frameHeight="533" />
+  <SubTexture name="crowd-van0003" x="394" y="2" width="388" height="523" frameX="-816" frameY="-1" frameWidth="1207" frameHeight="533" />
+  <SubTexture name="crowd-van0005" x="2" y="2" width="388" height="524" frameX="-817" frameY="-0" frameWidth="1207" frameHeight="533" />
+  <SubTexture name="crowd-van0006" x="2" y="2" width="388" height="524" frameX="-817" frameY="-0" frameWidth="1207" frameHeight="533" />
+  <SubTexture name="crowd-van0007" x="2" y="2" width="388" height="524" frameX="-817" frameY="-0" frameWidth="1207" frameHeight="533" />
+  <SubTexture name="crowd-van0008" x="2" y="2" width="388" height="524" frameX="-817" frameY="-0" frameWidth="1207" frameHeight="533" />
+  <SubTexture name="crowd-van0009" x="2" y="2" width="388" height="524" frameX="-817" frameY="-0" frameWidth="1207" frameHeight="533" />
+</TextureAtlas>
