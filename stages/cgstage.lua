@@ -47,6 +47,8 @@ function onCreate()
         setProperty('coolboppers2.y', getProperty('coolboppers2.y') - 110)
         addLuaSprite('coolboppers2')
     end
+    -- note: the BGLAYER uses the overlay blend mode which doesn't work for setBlendMode and runHaxeCode isn't exactly going to work with blend modes easily
+    -- will probably have to use an actual shader or something if I cant figure something out
 end
 
 function onBeatHit()
