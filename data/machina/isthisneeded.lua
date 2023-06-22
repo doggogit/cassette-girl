@@ -8,3 +8,27 @@ function onStartCountdown() -- i dont know i dont like using camFollowPos since 
         setProperty('skipCountdown', true)
     end
 end
+
+local doHitZoom = false
+function goodNoteHit(i, d, t, s)
+	if not s and doHitZoom then
+		setProperty('camHUD.zoom', 1.035)
+		doTweenZoom('backOut', 'camHUD', 1, 0.2)
+	end
+end
+
+local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBarBG'}
+function onStepHit()
+	setProperty('camZooming', not doHitZoom)
+	if curStep == 639 then
+		doHitZoom = true
+		for _,thing in pairs(things) do
+			doTweenAlpha('fadeOut'..thing, thing, 0, stepCrochet * 16 / 1000, 'quadInOut')
+		end
+	elseif curStep == 968 then
+		doHitZoom = false
+		for _,thing in pairs(things) do
+			doTweenAlpha('fadeIn'..thing, thing, 1, stepCrochet * 16 / 1000, 'quadInOut')
+		end
+	end
+end
