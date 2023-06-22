@@ -14,10 +14,10 @@ function goodNoteHit(i, d, t, s)
     if not s then
         for i = 0, 3 do
             setProperty('hitOverlay'..lights[i+1]..'.alpha', i == d and 1 or 0)
-            cancelTimer('fadeB'..lights[d+1])
-            cancelTween('growX'..lights[d+1])
-            cancelTween('growY'..lights[d+1])
-            cancelTween('bleh'..lights[d+1])
+            cancelTimer('fadeB'..lights[i+1])
+            cancelTween('growX'..lights[i+1])
+            cancelTween('growY'..lights[i+1])
+            cancelTween('bleh'..lights[i+1])
         end
         scaleObject('hitOverlay'..lights[d+1], 0.81, 0.81, false)
         runTimer('hitB'..lights[d+1], 0.1)
