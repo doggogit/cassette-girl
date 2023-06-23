@@ -63,14 +63,15 @@ function onTimerCompleted(t)
 
         runHaxeCode([[
             curPos = 0;
-            
+
             FlxTween.num(0, 122000, 1.65, {
-                ease: FlxEase.linear, 
-                onUpdate: function(tween:FlxTween){
+                ease: FlxEase.linear,
+                onUpdate: function(tween:FlxTween)
+                {
                     curPos = tween.value;
                     game.setOnLuas('curPos', curPos);
                 }
-            });  
+            });
         ]])
     end
     if t == 'endThatSong!!!!' then

@@ -12,7 +12,6 @@ function onCreatePost()
     setProperty('hbOverlay.alpha', 0.7)
     addLuaSprite('hbOverlay')
 
-    -- thing that appears every note hit (finished 😎 | im well rested)
     if flashingLights then
 		makeLuaSprite('cgLightsB', 'cassette/hud/NOTE_LIGHT', 0, 0)
 		--setObjectCamera('cgLightsB', 'hud')
@@ -36,7 +35,8 @@ function onCreatePost()
         FlxG.cameras.add(lightsCam, false);
 
         cams = [game.camHUD, game.camOther];
-        for (cam in cams){
+        for (cam in cams)
+        {
             FlxG.cameras.remove(cam, false);
             FlxG.cameras.add(cam, false);
         }
@@ -50,7 +50,6 @@ end
 function onUpdatePost()
     setProperty('hbOverlay.x', getProperty('healthBarBG.x'))
     setProperty('hbOverlay.y', getProperty('healthBarBG.y'))
-    setProperty('hbOverlay.alpha', getProperty('healthBarBG.alpha'))
 end
 
 local colors = {
@@ -109,7 +108,7 @@ function onTimerCompleted(t)
 end
 
 function onBeatHit()
-    setTimeBarColors((switchedCol and '4343af' or '31b0d1'), '000000');
+    setTimeBarColors((switchedCol and '4343af' or '31b0d1'), '000000')
     switchedCol = not switchedCol
 end
 

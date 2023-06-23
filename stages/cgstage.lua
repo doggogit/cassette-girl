@@ -53,6 +53,7 @@ function onCreate()
     screenCenter('bgLayer')
     scaleObject('bgLayer', 5, 5, false)
     setProperty('bgLayer.y', getProperty('bgLayer.y') - 10)
+    --setObjectCamera('bgLayer', 'hud')
     setBlendMode('bgLayer', 'overlay')
     addLuaSprite('bgLayer')
 end
