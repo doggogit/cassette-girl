@@ -50,6 +50,7 @@ end
 function onUpdatePost()
     setProperty('hbOverlay.x', getProperty('healthBarBG.x'))
     setProperty('hbOverlay.y', getProperty('healthBarBG.y'))
+    setProperty('hbOverlay.alpha', getProperty('healthBarBG.alpha'))
 end
 
 local colors = {
