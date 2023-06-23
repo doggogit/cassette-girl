@@ -1,6 +1,3 @@
-local lights = {'LEFT', 'DOWN', 'UP', 'RIGHT'}
-switchedCol = false
-
 function onCreate()
     setPropertyFromClass("openfl.Lib", "application.window.title", "Friday Night Funkin': Vs Cassette Girl")
 end
@@ -50,7 +47,7 @@ end
 function onUpdatePost()
     setProperty('hbOverlay.x', getProperty('healthBarBG.x'))
     setProperty('hbOverlay.y', getProperty('healthBarBG.y'))
-    setProperty('hbOverlay.alpha', getProperty('healthBarBG.alpha'))
+    setProperty('hbOverlay.alpha', math.max(getProperty('healthBarBG.alpha') - 0.3, math.min(0.7, getProperty('healthBarBG.alpha'))))
 end
 
 local colors = {
@@ -108,6 +105,7 @@ function onTimerCompleted(t)
     end
 end
 
+switchedCol = false
 function onBeatHit()
     setTimeBarColors((switchedCol and '4343af' or '31b0d1'), '000000')
     switchedCol = not switchedCol

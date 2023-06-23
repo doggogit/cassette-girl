@@ -1,12 +1,39 @@
-function onStartCountdown() -- i dont know i dont like using camFollowPos since it doesnt exist in 0.7b | i need to figure out something better
-    if isStoryMode then
-        setProperty('camFollowPos.x', getMidpointX('dad') + 200)
+function onCreatePost()
+	setProperty('timeBar.alpha', 1)
+	setProperty('timeBarBG.alpha', 1)
+	setProperty('timeTxt.alpha', 1)
+end
 
-        setProperty('camFollowPos.y', getMidpointY('dad') - 100)
-        setProperty('camFollowPos.y', getProperty('camFollowPos.y') + getProperty('dad.cameraPosition[1]')) 
-        
-        setProperty('skipCountdown', true)
+local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBarBG'}
+function onStartCountdown()
+    if isStoryMode and not seenCutscene then 
+		setProperty('skipCountdown', true)
+
+        setProperty('camFollow.x', 423)
+        setProperty('camFollow.y', 640)
+		setProperty('cameraSpeed', 50) -- I wont use camFollowPos or runHaxeCode for this!! I wont yield!!!
+
+		doTweenX('leMoveX', 'camFollow', 483.5, stepCrochet * 16 / 1000, 'quadInOut')
+        doTweenY('leMoveY', 'camFollow', 577.5, stepCrochet * 16 / 1000, 'quadInOut')
+		
+		setProperty('camGame.zoom', 0.85)
+		doTweenZoom('bleh!!!', 'camGame', 0.7, stepCrochet * 16 / 1000, 'quadInOut')
+		
+		for _,thing in pairs(things) do
+			setProperty(thing..'.alpha', 0)
+			doTweenAlpha('in'..thing, thing, 1, stepCrochet * 16 / 1000, 'quadInOut')
+		end
     end
+end
+
+function onSongStart()
+	if isStoryMode and not seenCutscene then
+		setProperty('cameraSpeed', 1)
+		for i = 0, 7 do
+			setPropertyFromGroup('strumLineNotes', i, 'alpha', 0)
+			noteTweenAlpha('strumIn'..i, i, 1, 0.7, 'quadInOut')
+		end
+	end
 end
 
 local doHitZoom = false
@@ -20,6 +47,7 @@ end
 local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBarBG'}
 function onStepHit()
 	setProperty('camZooming', not doHitZoom)
+
 	if curStep == 639 then
 		doHitZoom = true
 		setProperty('defaultCamZoom', 0.79)

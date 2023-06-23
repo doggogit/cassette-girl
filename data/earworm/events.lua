@@ -15,10 +15,6 @@ end
 
 function onStartCountdown()
     if isStoryMode then
-        -- "caching" attempts | ill figure it out probably | i mean it does load the song faster but --
-        --addCharacterToList('bf', 'boyfriend')
-        --addCharacterToList('gf', 'gf')
-        --addCharacterToList('cg', 'dad')
         addHaxeLibrary('SoundFrontEnd', 'flixel.system.frontEnds')
         runHaxeCode([[
             FlxG.sound.cache(Paths.inst('machina'));
@@ -33,12 +29,18 @@ function onEndSong()
         endedSong = true
         leFakeBpm = curBpm
         setProperty('updateTime', false)
-
-        setProperty('timeBar.visible', true)
-        setProperty('timeBarBG.visible', true)
-        setProperty('timeTxt.visible', true)
         
-        playMusic('breakfast', 0, true) -- 
+        playMusic('breakfast', 0, true) 
+
+        setProperty('dad.visible', false)
+        playAnim('casFake', 'swap')
+        setProperty('casFake.alpha', 1)
+        playSound('rewind')
+        
+        setProperty('camHUD.zoom', 1) -- just incase
+
+        setProperty('defaultCamZoom', 0.85)
+        doTweenZoom('cutscen', 'camGame', 0.85, stepCrochet * 16 / 1000, 'quadInOut')
 
         for i = 1, #hideStuff do
             doTweenAlpha('hide'..i, hideStuff[i], 0, stepCrochet * 16 / 1000, 'quadInOut') 
@@ -46,6 +48,9 @@ function onEndSong()
         for i = 0, 7 do
             noteTweenAlpha('awayWithYou'..i, i, 0, 1, 'quadInOut') 
         end
+
+        doTweenX('leMoveX', 'camFollow', 423, stepCrochet * 16 / 1000, 'quadInOut')
+        doTweenY('leMoveY', 'camFollow', 640, stepCrochet * 16 / 1000, 'quadInOut')
 
         runTimer('setBack', 0.8)
 
@@ -56,15 +61,10 @@ end
 
 function onTimerCompleted(t)
     if t == 'setBack' then
-        setProperty('dad.visible', false)
-        playAnim('casFake', 'swap')
-        setProperty('casFake.alpha', 1)
-        playSound('rewind')
-
         runHaxeCode([[
             curPos = 0;
 
-            FlxTween.num(0, 122000, 1.65, {
+            FlxTween.num(0, 122000, 2, {
                 ease: FlxEase.linear,
                 onUpdate: function(tween:FlxTween)
                 {
@@ -84,6 +84,10 @@ local usePos = 0
 local nextSongLength = 121000 
 function onUpdatePost()
     if endedSong then
+        setProperty('timeBar.visible', true)
+        setProperty('timeBarBG.visible', true)
+        setProperty('timeTxt.visible', true)
+
         usePos = curPos or 0
 
         if getProperty('casFake.animation.curAnim.finished') and not getProperty('dad.visible') then
