@@ -5,31 +5,61 @@ function onCreate()
     setPropertyFromClass("openfl.Lib", "application.window.title", "Friday Night Funkin': Vs Cassette Girl")
 end
 
-function onCreatePost()
+function onCreatePost() 
     makeLuaSprite('hbOverlay', 'cassette/hud/hbOverlay', 0, 0)
     setObjectCamera('hbOverlay', 'hud')
     setObjectOrder('hbOverlay', getObjectOrder('healthBar') + 1)
     setProperty('hbOverlay.alpha', 0.7)
     addLuaSprite('hbOverlay')
 
-    -- thing that appears every note hit (unfinished | im tired)
-    for i = 1, 4 do
-        makeLuaSprite('hitOverlay'..lights[i], 'cassette/hud/'..lights[i]..' LIGHT')
-        screenCenter('hitOverlay'..lights[i])
-        scaleObject('hitOverlay'..lights[i], 0.81, 0.81, false)
-        setProperty('hitOverlay'..lights[i]..'.alpha', 0.0001)
-        setObjectCamera('hitOverlay'..lights[i], 'hud')
-        addLuaSprite('hitOverlay'..lights[i])
-    end
+    -- thing that appears every note hit (finished 😎 | im well rested)
+    if flashingLights then
+		makeLuaSprite('cgLightsB', 'cassette/hud/NOTE_LIGHT', 0, 0)
+		--setObjectCamera('cgLightsB', 'hud')
+        screenCenter('cgLightsB')
+        scaleObject('cgLightsB', 0.81, 0.81, false)
+		setProperty('cgLightsB.alpha', 0.0001)
+		addLuaSprite('cgLightsB', true)
+
+        makeLuaSprite('cgLightsD', 'cassette/hud/NOTE_LIGHT', 0, 0)
+		--setObjectCamera('cgLightsD', 'hud')
+        screenCenter('cgLightsD')
+        scaleObject('cgLightsD', 0.81, 0.81, false)
+		setProperty('cgLightsD.alpha', 0.0001)
+		addLuaSprite('cgLightsD', true)
+	end
+
+    addHaxeLibrary('FlxCamera', 'flixel')
+    runHaxeCode([[
+        lightsCam = new FlxCamera();
+        lightsCam.bgColor = 0x00;
+        FlxG.cameras.add(lightsCam, false);
+
+        cams = [game.camHUD, game.camOther];
+        for (cam in cams){
+            FlxG.cameras.remove(cam, false);
+            FlxG.cameras.add(cam, false);
+        }
+        
+        game.getLuaObject('cgLightsB', false).cameras = [lightsCam];
+        game.getLuaObject('cgLightsD', false).cameras = [lightsCam];
+        game.getLuaObject('bgLayer', false).cameras = [lightsCam];
+    ]])
 end
 
 function onUpdatePost()
     setProperty('hbOverlay.x', getProperty('healthBarBG.x'))
     setProperty('hbOverlay.y', getProperty('healthBarBG.y'))
+    setProperty('hbOverlay.alpha', getProperty('healthBarBG.alpha'))
 end
 
+local colors = {
+	[0] = 'c24b99', [1] = '00ffff',
+	[2] = '12fa05',	[3] = 'f9393f'
+}
+
 function goodNoteHit(i, d, t, s)
-    if not sus then
+    if not s then
         runHaxeCode([=[
             var nums = [for (i in 1...4) game.members[game.members.indexOf(game.strumLineNotes) - i]];
             var all = [for (i in nums) i];
@@ -41,41 +71,40 @@ function goodNoteHit(i, d, t, s)
             for (spr in all)
                 spr.cameras = [game.camGame];
         ]=])
-    end
+        
+        cancelTimer('fadeB') cancelTween('blehB')
+        cancelTween('growXB') cancelTween('growYB')
 
-    if not s then
-        for i = 0, 3 do
-            setProperty('hitOverlay'..lights[i+1]..'.alpha', i == d and 1 or 0)
-            cancelTimer('fadeB'..lights[i+1])
-            cancelTween('growX'..lights[i+1])
-            cancelTween('growY'..lights[i+1])
-            cancelTween('bleh'..lights[i+1])
-        end
-        scaleObject('hitOverlay'..lights[d+1], 0.81, 0.81, false)
-        runTimer('hitB'..lights[d+1], 0.1)
+        scaleObject('cgLightsB', 0.81, 0.81, false)
+        setProperty('cgLightsB.color', getColorFromHex(colors[d]))
+        setProperty('cgLightsB.alpha', 1)
+        runTimer('hitB', 0.1)
     end
 end
 
 function opponentNoteHit(i, d, t, s) -- only when she sings with alt anims
-    -- i love doggo so much he's so kind to me and he's given me something no one else has my feelings for him grow every day
+    if getProperty('dad.animation.curAnim.name'):find('-alt') and not s then
+        cancelTimer('fadeD') cancelTween('blehD')
+        cancelTween('growXD') cancelTween('growYD')
+
+        scaleObject('cgLightsD', 0.81, 0.81, false)
+		setProperty('cgLightsD.color', getColorFromHex(colors[d]))
+		setProperty('cgLightsD.alpha', 1)
+        runTimer('hitD', 0.1)
+    end
 end
 
 function onTimerCompleted(t)
-    if t:find('B') then
-        if t:find('hit') then
-            t = t:gsub('hitB', '')
-            cancelTimer('fadeB'..t)
-            cancelTween('growX'..t)
-            cancelTween('growY'..t)
-            cancelTween('bleh'..t)
+    if t:find('hit') then
+        t = t:gsub('hit', '')
 
-            doTweenX('growX'..t, 'hitOverlay'..t..'.scale', 1, 0.8, 'cubeOut')
-            doTweenX('growY'..t, 'hitOverlay'..t..'.scale', 1, 0.8, 'cubeOut')
-            runTimer('fadeB'..t, 0.1)
-        else
-            t = t:gsub('fadeB', '')
-            doTweenAlpha('bleh'..t, 'hitOverlay'..t, 0, 4, 'cubeOut')
-        end
+        doTweenX('growX'..t, 'cgLights'..t..'.scale', 1, 0.8, 'cubeOut')
+        doTweenX('growY'..t, 'cgLights'..t..'.scale', 1, 0.8, 'cubeOut')
+        runTimer('fade'..t, 0.1)
+    end
+    if t:find('fade') then
+        t = t:gsub('fade', '')
+        doTweenAlpha('bleh'..t, 'cgLights'..t, 0, 4, 'cubeOut')
     end
 end
 

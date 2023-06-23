@@ -47,8 +47,25 @@ function onCreate()
         setProperty('coolboppers2.y', getProperty('coolboppers2.y') - 110)
         addLuaSprite('coolboppers2')
     end
+
+
+    makeLuaSprite('bgLayer', 'cassette/stage/BGLAYER')
+    setProperty('bgLayer.alpha', (songName == 'Machina' and 1 or 0.001))
+    screenCenter('bgLayer')
+    scaleObject('bgLayer', 5, 5, false)
+    setProperty('bgLayer.y', getProperty('bgLayer.y') - 10)
+    --setObjectCamera('bgLayer', 'hud')
+    addLuaSprite('bgLayer')
+
+    --initLuaShader('blend')
+    --setSpriteShader('bgLayer', 'blend')
+
     -- note: the BGLAYER uses the overlay blend mode which doesn't work for setBlendMode and runHaxeCode isn't exactly going to work with blend modes easily
     -- will probably have to use an actual shader or something if I cant figure something out
+end
+
+function onStartCountdown()
+    doTweenAlpha('l', 'bgLayer', 1, 1)
 end
 
 function onBeatHit()

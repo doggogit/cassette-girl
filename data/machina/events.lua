@@ -22,11 +22,14 @@ function onStepHit()
 	setProperty('camZooming', not doHitZoom)
 	if curStep == 639 then
 		doHitZoom = true
+		setProperty('defaultCamZoom', 0.79)
+		doTweenZoom('alting', 'camGame', 0.79, stepCrochet * 16 / 1000, 'quadInOut')
 		for _,thing in pairs(things) do
 			doTweenAlpha('fadeOut'..thing, thing, 0, stepCrochet * 16 / 1000, 'quadInOut')
 		end
 	elseif curStep == 968 then
 		doHitZoom = false
+		setProperty('defaultCamZoom', 0.7)
 		for _,thing in pairs(things) do
 			doTweenAlpha('fadeIn'..thing, thing, 1, stepCrochet * 16 / 1000, 'quadInOut')
 		end
