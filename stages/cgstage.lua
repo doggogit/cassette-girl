@@ -58,8 +58,14 @@ function onCreate()
     addLuaSprite('bgLayer')
 end
 
-function onStartCountdown()
-    doTweenAlpha('l', 'bgLayer', 1, 1)
+function onCountdownStarted()
+    runTimer('layerIn', 0.2) -- start delay :trol:
+end
+
+function onTimerCompleted(t)
+    if t == 'layerIn' then
+        doTweenAlpha('l', 'bgLayer', 1, 1)
+    end
 end
 
 function onBeatHit()

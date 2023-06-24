@@ -4,9 +4,9 @@ function onCreatePost()
         makeAnimatedLuaSprite('introCas', 'cassette/cutscenes/intro/cassettegirl-st', getProperty('dad.x'), getProperty('dad.y'))
         addAnimationByPrefix('introCas', 'start', 'cassettegirl cut', 22, false)
         setObjectOrder('introCas', getObjectOrder('dadGroup'))
+
         setProperty('camFollow.x', getMidpointX('dad') + 200)
         setProperty('camFollow.y', getMidpointY('dad') - 100)
-
         setProperty('camFollow.y', getProperty('camFollow.y') + getProperty('dad.cameraPosition[1]'))    
         
         for _,thing in pairs(things) do setProperty(thing..'.alpha', 0) end
@@ -23,10 +23,6 @@ function onStartCountdown()
         playAnim('introCas', 'start')
         return Function_Stop
     end
-    for _,thing in pairs(things) do 
-        doTweenAlpha('fade'..thing, thing, 1, stepCrochet * 16 / 1000, 'quadInOut')
-    end
-    
     return Function_Continue
 end
 
@@ -47,6 +43,9 @@ function onUpdate()
             removeLuaSprite('introCas', true)
             setProperty('dad.visible', true)
             startCountdown()
+            for _,thing in pairs(things) do 
+                doTweenAlpha('fade'..thing, thing, 1, stepCrochet * 16 / 1000, 'quadInOut')
+            end
         end
     end
 end
