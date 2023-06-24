@@ -2,6 +2,14 @@ function onCreatePost()
 	setProperty('timeBar.alpha', 1)
 	setProperty('timeBarBG.alpha', 1)
 	setProperty('timeTxt.alpha', 1)
+
+	if isStoryMode and not seenCutscene then
+		addHaxeLibrary('FlxTransitionableState', 'flixel.addons.transition')
+		runHaxeCode([[
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
+		]])
+	end
 end
 
 local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBarBG'}

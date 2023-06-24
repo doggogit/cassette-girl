@@ -15,8 +15,11 @@ end
 
 function onStartCountdown()
     if isStoryMode then
+        addHaxeLibrary('FlxTransitionableState', 'flixel.addons.transition')
         addHaxeLibrary('SoundFrontEnd', 'flixel.system.frontEnds')
         runHaxeCode([[
+            FlxTransitionableState.skipNextTransIn = true;
+    	    FlxTransitionableState.skipNextTransOut = true;
             FlxG.sound.cache(Paths.inst('machina'));
             FlxG.sound.cache(Paths.voices('machina'));
         ]])
