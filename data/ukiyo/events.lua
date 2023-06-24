@@ -36,6 +36,7 @@ function onUpdate()
             lol[2] = true
             playSound('dah')
             playAnim('boyfriend', 'singUP')
+            setProperty('boyfriend.holdTimer', 0.3)
             setProperty('camFollow.x', getProperty('camFollow.x') + 150)
             soundFadeOut('city', 4, 0)
         end
