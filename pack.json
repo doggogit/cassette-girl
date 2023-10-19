@@ -1,11 +1,8 @@
 {
 	"name": "Vs. Cassette Girl",
-	"description": "a very cool mod",
-	"restart": true,
+	"description": "a very cool mod...",
+	"restart":true,
 	"runsGlobally": false,
-	"color": [
-		67,
-		67,
-		175
-	]
+	"color": [67, 67, 175],
+	"discordRPC": "1164702611933515776"
 }

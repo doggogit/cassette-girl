@@ -1,20 +1,4 @@
 {
-	"storyName": "Play, Pause, Stop, Repeat.",
-	"difficulties": "Hard",
-	"hideFreeplay": false,
-	"weekBackground": "cg",
-	"freeplayColor": [
-		67,
-		67,
-		175
-	],
-	"weekBefore": "",
-	"startUnlocked": true,
-	"weekCharacters": [
-		"cg",
-		"bf",
-		"gf"
-	],
 	"songs": [
 		[
 			"Soda Groove",
@@ -35,7 +19,23 @@
 			]
 		]
 	],
-	"hideStoryMode": true,
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"weekBackground": "cg",
+	"difficulties": "",
+	"weekCharacters": [
+		"cg",
+		"bf",
+		"gf"
+	],
+	"storyName": "Play, Pause, Stop, Repeat.",
 	"weekName": "Cassette Girl Week",
-	"hiddenUntilUnlocked": false
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": true,
+	"weekBefore": "",
+	"startUnlocked": true
 }
