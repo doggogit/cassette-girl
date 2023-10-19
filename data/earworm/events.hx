@@ -69,10 +69,16 @@ function onEndSong()
 		
 		new FlxTimer().start(0.8, function()
 		{
-			FlxTween.num(0, 122000, 2, {onUpdate: function(tween:FlxTween)
-			{
-				curPos = tween.value;
-			}});
+            FlxTween.num(0, 122000, 2, {
+                onUpdate: function(tween:FlxTween)
+                {
+                    curPos = tween.value;
+                },
+                onComplete: function()
+                {
+                    curPos = 121000; //should prevent it from stopping at 2:00 maybe
+                }
+            }); 
 		});
 		return Function_Stop;
 	}
