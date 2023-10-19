@@ -23,11 +23,16 @@ function onStartCountdown()
         playAnim('introCas', 'start')
         return Function_Stop
     end
-    setProperty('camFollow.x', getMidpointX('dad') + 500)
     return Function_Continue
 end
 
 function onUpdate()
+    if curStep == 8 and lol[2] then
+        lol[2] = false
+        setProperty('cameraSpeed', 1)
+        callMethod('moveCameraSection')
+    end
+
     if luaSpriteExists('introCas') then
         if getProperty('introCas.animation.curAnim.curFrame') == 34 and not lol[1] then
             lol[1] = true
@@ -37,13 +42,14 @@ function onUpdate()
             lol[2] = true
             playSound('dah')
             playAnim('boyfriend', 'singUP')
-            setProperty('boyfriend.holdTimer', 0.3)
+            setProperty('boyfriend.holdTimer', 0.28)
             setProperty('camFollow.x', getProperty('camFollow.x') + 150)
             soundFadeOut('city', 4, 0)
         end
         if getProperty('introCas.animation.curAnim.finished') and didIntro then
             removeLuaSprite('introCas', true)
             setProperty('dad.visible', true)
+            setProperty('cameraSpeed', 0)
             startCountdown()
             for _,thing in pairs(things) do 
                 doTweenAlpha('fade'..thing, thing, 1, stepCrochet * 16 / 1000, 'quadInOut')

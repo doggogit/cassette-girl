@@ -6,6 +6,7 @@ function onCreatePost(){
     lightsCam = new FlxCamera();
 	lightsCam.bgColor = 0x00;
 	FlxG.cameras.add(lightsCam, false);
+    game.modchartSprites['bgLayer'].camera = lightsCam;
 
 	for (cam in [game.camHUD, game.camOther])
 	{
@@ -30,19 +31,9 @@ function onCreatePost(){
     return;
 }
 
-
 function goodNoteHit(note){
     if(!note.isSustainNote){
-        /*var nums = [for (i in 1...4) game.members[game.members.indexOf(game.strumLineNotes) - i]];
-        var all = [for (i in nums) i];
-        var combo = game.members[game.members.indexOf(game.strumLineNotes) - 3];
-        all.push(combo);
-        var rating = game.members[game.members.indexOf(game.strumLineNotes) - 4];
-        all.push(rating);
-        // example on what you can do :)
-        for (spr in all)
-            spr.cameras = [game.camGame];*/
-
+        
         noteLight(true, note.noteData);
     }
     return;
