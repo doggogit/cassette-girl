@@ -1,25 +1,19 @@
 function onCreatePost()
-	setProperty('timeBar.alpha', 1)
-	setProperty('timeBarBG.alpha', 1)
-	setProperty('timeTxt.alpha', 1)
-
 	if isStoryMode and not seenCutscene then
-		addHaxeLibrary('FlxTransitionableState', 'flixel.addons.transition')
-		runHaxeCode([[
-			FlxTransitionableState.skipNextTransIn = true;
-			FlxTransitionableState.skipNextTransOut = true;
-		]])
+		setProperty('timeBar.alpha', 1)
+		setProperty('timeBar.bg.alpha', 1)
+		setProperty('timeTxt.alpha', 1)
 	end
 end
 
-local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBarBG'}
+local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBar.bg'}
 function onStartCountdown()
     if isStoryMode and not seenCutscene then 
 		setProperty('skipCountdown', true)
 
         setProperty('camFollow.x', 423)
         setProperty('camFollow.y', 640)
-		setProperty('cameraSpeed', 50) -- I wont use camFollowPos or runHaxeCode for this!! I wont yield!!!
+		setProperty('cameraSpeed', 50) -- I wont yield!!!
 
 		doTweenX('leMoveX', 'camFollow', 483.5, stepCrochet * 16 / 1000, 'quadInOut')
         doTweenY('leMoveY', 'camFollow', 577.5, stepCrochet * 16 / 1000, 'quadInOut')
@@ -52,7 +46,7 @@ function goodNoteHit(i, d, t, s)
 	end
 end
 
-local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBarBG'}
+local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBar.bg'}
 function onStepHit()
 	setProperty('camZooming', not doHitZoom)
 

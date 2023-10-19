@@ -1,15 +1,9 @@
-local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBarBG'}
-function onCreatePost()
+local things = {'iconP1', 'iconP2', 'scoreTxt', 'healthBar', 'healthBar.bg'}
+function onCreate()
     if isStoryMode and not seenCutscene then
         makeAnimatedLuaSprite('introCas', 'cassette/cutscenes/intro/cassettegirl-st', getProperty('dad.x'), getProperty('dad.y'))
         addAnimationByPrefix('introCas', 'start', 'cassettegirl cut', 22, false)
         setObjectOrder('introCas', getObjectOrder('dadGroup'))
-
-        setProperty('camFollow.x', getMidpointX('dad') + 200)
-        setProperty('camFollow.y', getMidpointY('dad') - 100)
-        setProperty('camFollow.y', getProperty('camFollow.y') + getProperty('dad.cameraPosition[1]'))    
-        
-        for _,thing in pairs(things) do setProperty(thing..'.alpha', 0) end
     end
 end
 
@@ -18,11 +12,18 @@ local lol = {false, false}
 function onStartCountdown()
     if isStoryMode and not seenCutscene and not didIntro then
         didIntro = true
+        setProperty('camFollow.x', getMidpointX('dad') + 200)
+        setProperty('camFollow.y', getMidpointY('dad') - 100)
+        setProperty('camFollow.y', getProperty('camFollow.y') + getProperty('dad.cameraPosition[1]'))    
+        
+        for _,thing in pairs(things) do setProperty(thing..'.alpha', 0) end
+        
         playSound('city', 1, 'city')
         setProperty('dad.visible', false)
         playAnim('introCas', 'start')
         return Function_Stop
     end
+    setProperty('camFollow.x', getMidpointX('dad') + 500)
     return Function_Continue
 end
 

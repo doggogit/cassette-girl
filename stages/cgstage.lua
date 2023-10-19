@@ -55,7 +55,7 @@ function onCreate()
     setProperty('bgLayer.y', getProperty('bgLayer.y') - 10)
     --setObjectCamera('bgLayer', 'hud')
     setBlendMode('bgLayer', 'overlay')
-    addLuaSprite('bgLayer')
+    addLuaSprite('bgLayer', true)
 end
 
 function onCountdownStarted()
