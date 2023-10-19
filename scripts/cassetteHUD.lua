@@ -2,7 +2,7 @@ function onCreate()
     setPropertyFromClass("openfl.Lib", "application.window.title", "Friday Night Funkin': Vs Cassette Girl")
 end
 
-function onCreatePost() 
+function onCreatePost()
     makeLuaSprite('hbOverlay', 'cassette/hud/hbOverlay', 0, 0)
     setObjectCamera('hbOverlay', 'hud')
     setObjectOrder('hbOverlay', getObjectOrder('healthBar') + 1)

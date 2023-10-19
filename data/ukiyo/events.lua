@@ -14,10 +14,12 @@ function onStartCountdown()
         didIntro = true
         setProperty('camFollow.x', getMidpointX('dad') + 200)
         setProperty('camFollow.y', getMidpointY('dad') - 100)
-        setProperty('camFollow.y', getProperty('camFollow.y') + getProperty('dad.cameraPosition[1]'))    
-        
-        for _,thing in pairs(things) do setProperty(thing..'.alpha', 0) end
-        
+        setProperty('camFollow.y', getProperty('camFollow.y') + getProperty('dad.cameraPosition[1]'))
+
+        for _, thing in pairs(things) do
+            setProperty(thing .. '.alpha', 0)
+        end
+
         playSound('city', 1, 'city')
         setProperty('dad.visible', false)
         playAnim('introCas', 'start')
@@ -51,8 +53,8 @@ function onUpdate()
             setProperty('dad.visible', true)
             setProperty('cameraSpeed', 0)
             startCountdown()
-            for _,thing in pairs(things) do 
-                doTweenAlpha('fade'..thing, thing, 1, stepCrochet * 16 / 1000, 'quadInOut')
+            for _, thing in pairs(things) do
+                doTweenAlpha('fade' .. thing, thing, 1, stepCrochet * 16 / 1000, 'quadInOut')
             end
         end
     end

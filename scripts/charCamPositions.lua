@@ -1,5 +1,5 @@
 function onMoveCamera(char)
-    if char == 'dad' then 
+    if char == 'dad' then
         setProperty('camFollow.x', getMidpointX('dad') + 200)
         setProperty('camFollow.y', getMidpointY('dad') - 100)
 
