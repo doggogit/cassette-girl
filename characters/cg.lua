@@ -7,8 +7,12 @@ end
 
 function onStepHit()
     if songName == 'Machina' then
-        if curStep == 639 then updateNotes('-alt') end
-        if curStep == 967 then updateNotes('') end
+        if curStep == 639 then
+            updateNotes('-alt')
+        end
+        if curStep == 967 then
+            updateNotes('')
+        end
     end
 end
 
