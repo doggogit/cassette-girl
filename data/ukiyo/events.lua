@@ -20,6 +20,7 @@ function onStartCountdown()
             setProperty(thing .. '.alpha', 0)
         end
 
+        setProperty('boyfriend.skipDance', true)
         playSound('city', 1, 'city')
         setProperty('dad.visible', false)
         playAnim('introCas', 'start')
@@ -44,7 +45,7 @@ function onUpdate()
             lol[2] = true
             playSound('dah')
             playAnim('boyfriend', 'singUP')
-            setProperty('boyfriend.holdTimer', 0.28)
+            runTimer('bop', 0.4)
             setProperty('camFollow.x', getProperty('camFollow.x') + 150)
             soundFadeOut('city', 4, 0)
         end
@@ -57,5 +58,12 @@ function onUpdate()
                 doTweenAlpha('fade' .. thing, thing, 1, stepCrochet * 16 / 1000, 'quadInOut')
             end
         end
+    end
+end
+
+function onTimerCompleted(t)
+    if t == 'bop' then
+        playAnim('boyfriend', 'idle')
+        setProperty('boyfriend.skipDance', false)
     end
 end
