@@ -2,10 +2,10 @@
 	"idle_anim": "cassettegirl idle",
 	"image": "Menu_CG",
 	"position": [
-		200,
-		200
+		204,
+		204
 	],
 	"flipX": false,
-	"scale": 0.55,
+	"scale": 0.56,
 	"confirm_anim": "cassettegirl idle"
 }
